@@ -1,15 +1,5 @@
-import react from 'react';
-import reactDom from 'react-dom';
-
-
-function participant(props) {
-    const parName = props.name
-  return (
-    <main className='App'>
-      {'this is the best'}
-    </main>
-  );
-}
+import React from 'react';
+import ReactDom from 'react-dom';
 
 const participants = [
     {
@@ -52,3 +42,30 @@ const participants = [
         onStage: true
     }
   ];
+
+
+export default function Participant(props) {
+  const participantArray = participants.map(person => {
+    let inSesh = 'yes';    
+    let onStageo = 'yes';
+    if (person.inSession === false) {
+            inSesh = 'no';
+        }
+    if (person.onStage === false) {
+            onStageo = 'no';
+        }
+        return (
+        <div>
+        <img src ={person.avatar} alt='alt text' />
+        <h3>Name: {person.name}</h3>
+        <p>In session?: {inSesh}</p>
+        <p>On Stage?: {onStageo}</p>
+        </div>)
+  })
+  return (
+    <div>
+        {participantArray}
+    </div>
+  )
+}
+
